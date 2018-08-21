@@ -10,16 +10,28 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var countLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        if let count =  self.navigationController?.viewControllers.count{
+            self.countLabel.text = "\(count)"
+        }else{
+            self.countLabel.text = "Not a nav"
+        }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func pushAction(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "MainViewController")
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+        // self.present(vc, animated: true)
     }
-
+    
 
 }
 
